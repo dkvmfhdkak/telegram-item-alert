@@ -1,5 +1,3 @@
-name: Telegram Item Alert
-
 on:
   schedule:
     # 매 5분마다 실행
