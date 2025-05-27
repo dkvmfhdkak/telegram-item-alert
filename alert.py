@@ -1,6 +1,7 @@
 import os, json, requests, schedule, time
 from bs4 import BeautifulSoup
-from telegram import Bot, ParseMode
+from telegram import Bot
+from telegram.constants import ParseMode
 
 TELE_TOKEN = os.getenv("TELE_TOKEN")
 CHAT_ID    = os.getenv("CHAT_ID")
