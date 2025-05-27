@@ -1,0 +1,29 @@
+name: Telegram Item Alert
+
+on:
+  schedule:
+    # 매 5분마다 실행
+    - cron:  '*/5 * * * *'
+  workflow_dispatch:  # 수동 실행 버튼
+
+jobs:
+  alert:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install --no-cache-dir -r requirements.txt
+
+      - name: Run alert script
+        env:
+          TELE_TOKEN: ${{ secrets.TELE_TOKEN }}
+          CHAT_ID:    ${{ secrets.CHAT_ID }}
+        run: python alert.py
