@@ -24,7 +24,7 @@ def send(msg):
     bot.send_message(chat_id=CHAT_ID, text=msg, parse_mode=ParseMode.HTML)
 
 def check_itemmania_other(seen):
-    url = "https://www.itemmania.com/maplestory/other_char_search.php?keyword=" + "+".join(KEYWORDS)
+    url = "http://trade.itemmania.com/sell/list_search.html" + "+".join(KEYWORDS)
     soup = BeautifulSoup(requests.get(url, headers={"User-Agent":"Mozilla/5.0"}).text, "lxml")
     for item in soup.select(".list-item"):
         pid   = item.get("data-id")
@@ -36,7 +36,7 @@ def check_itemmania_other(seen):
             send(f"[ItemMania 기타] <a href=\"{link}\">{title}</a> — {price}원")
 
 def check_itemmania_world(seen):
-    url = "https://www.itemmania.com/maplestoryworld/mapleland_char_search.php?keyword=" + "+".join(KEYWORDS)
+    url = "http://trade.itemmania.com/sell/list_search.html" + "+".join(KEYWORDS)
     soup = BeautifulSoup(requests.get(url, headers={"User-Agent":"Mozilla/5.0"}).text, "lxml")
     for item in soup.select(".list-item"):
         pid   = item.get("data-id")
@@ -48,8 +48,7 @@ def check_itemmania_world(seen):
             send(f"[ItemMania 월드] <a href=\"{link}\">{title}</a> — {price}원")
 
 def check_barotem(seen):
-    url = ("https://www.barotem.com/search?"
-           "game=메이플스토리&world=메이플월드&type=sell"
+    url = ("https://www.barotem.com/product/lists/2867?page=1&sell=sell&category=2867r02&display=1&orderby=1&minpay=&maxpay=&search_word=&brand=&buyloc=&opt1=9138&opt2=&opt3=&opt4=&opt5=&opt6=&opt7=&opt8=&opt9=&opt10="
            "&keyword=" + "+".join(KEYWORDS))
     soup = BeautifulSoup(requests.get(url, headers={"User-Agent":"Mozilla/5.0"}).text, "lxml")
     for item in soup.select(".item-list .item"):
