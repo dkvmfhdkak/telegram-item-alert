@@ -1,7 +1,5 @@
 name: Telegram Item Alert
 
-name: Telegram Item Alert
-
 on:
   schedule:
     - cron: '*/5 * * * *'
@@ -10,17 +8,16 @@ on:
 jobs:
   alert:
     runs-on: ubuntu-latest
-    steps:
-      - name: Check TELE_TOKEN & CHAT_ID
 
     steps:
-          - name: Check TELE_TOKEN & CHAT_ID
+      - name: Check TELE_TOKEN & CHAT_ID
         run: |
           echo "TELE_TOKEN = $TELE_TOKEN"
           echo "CHAT_ID    = $CHAT_ID"
         env:
           TELE_TOKEN: ${{ secrets.TELE_TOKEN }}
           CHAT_ID:    ${{ secrets.CHAT_ID }}
+
       - name: Checkout repo
         uses: actions/checkout@v4
 
