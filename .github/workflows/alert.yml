@@ -8,6 +8,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+          - name: Check TELE_TOKEN & CHAT_ID
+        run: |
+          echo "TELE_TOKEN = $TELE_TOKEN"
+          echo "CHAT_ID    = $CHAT_ID"
+        env:
+          TELE_TOKEN: ${{ secrets.TELE_TOKEN }}
+          CHAT_ID:    ${{ secrets.CHAT_ID }}
       - name: Checkout repo
         uses: actions/checkout@v4
 
